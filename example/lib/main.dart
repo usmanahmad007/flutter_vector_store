@@ -32,7 +32,8 @@ class VectorStoreHomeScreen extends StatefulWidget {
 }
 
 class _VectorStoreHomeScreenState extends State<VectorStoreHomeScreen> {
-  late final VectorStore _store;
+  late VectorStore _store;
+  bool _isStoreInitialized = false;
   final TextEditingController _queryController = TextEditingController(
     text: 'optimal soil moisture and irrigation for high yield crops',
   );
@@ -59,12 +60,19 @@ class _VectorStoreHomeScreenState extends State<VectorStoreHomeScreen> {
   }
 
   void _initStore() {
+    final oldDocs = _isStoreInitialized ? _store.getAll() : <VectorDocument>[];
     final index = _useHnswIndex ? HNSWIndex() : FlatIndex();
     _store = VectorStore(
       index: index,
       embedder: HashVectorEmbedder(dimension: 64),
     );
-    _populateKnowledgeBase();
+    _isStoreInitialized = true;
+    if (oldDocs.isNotEmpty) {
+      _store.addMany(oldDocs);
+      _performSearch();
+    } else {
+      _populateKnowledgeBase();
+    }
   }
 
   Future<void> _populateKnowledgeBase() async {
