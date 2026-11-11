@@ -1,0 +1,27 @@
+name: flutter_vector_store
+description: High-performance on-device Vector Database and Semantic Search engine for Flutter. Pure Dart, offline RAG, and nearest-neighbor vector search.
+version: 0.1.0
+homepage: https://github.com/usmanahmad007/flutter_vector_store
+repository: https://github.com/usmanahmad007/flutter_vector_store
+issue_tracker: https://github.com/usmanahmad007/flutter_vector_store/issues
+topics:
+  - vector-database
+  - semantic-search
+  - rag
+  - on-device
+  - ai
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=3.3.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
